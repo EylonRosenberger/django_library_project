@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Late Loans{% endblock %}
+
+{% block content %}
+    <h1>Late Book Loans</h1>
+    <body>
+        <div class="container">
+            <!-- <h1>Late Book Loans</h1> -->
+            <ul class="list-group">
+                {% for loan in late_loans %}
+                    <li class="list-group-item {% if loan.return_date < today %}list-group-item-danger{% endif %}">
+                        {{ loan.book.name }} - Return Date: {{ loan.return_date }}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No late loans found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+{% endblock %}
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Late Loans</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Late Book Loans</h1>
+        <ul class="list-group">
+            {% for loan in late_loans %}
+                <li class="list-group-item {% if loan.return_date < today %}list-group-item-danger{% endif %}">
+                    {{ loan.book.name }} - Return Date: {{ loan.return_date }}
+                </li>
+            {% empty %}
+                <li class="list-group-item">No late loans found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html> -->

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Loan a Book</h2>
+  <form action="{% url 'loan_book' %}" method="post">
+    {% csrf_token %}
+    <select name="selectedBook">
+        <option selected value=0>Select a book</option>
+        {% for item in books %}
+        <option value="{{item.id}}">{{item.name}}</option>
+        {% endfor %}
+    </select>
+    <div class="book-grid">
+      {% for book in available_books %}
+          <div class="book">
+              <img src="{{ book.image.url }}" alt="{{ book.name }}">
+              <p>{{ book.name }}</p>
+              <p>By {{ book.author }}</p>
+              <input type="radio" name="selectedBook" value="{{ book.id }}" required>
+          </div>
+      {% endfor %}
+  </div>
+    <br/>
+    <br/>
+    <button type="submit">Loan Book</button>
+  </form>
+  {{message}}
+{% endblock %}

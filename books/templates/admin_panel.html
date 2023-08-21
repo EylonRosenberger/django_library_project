@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+    <h1>Admin Panel</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }} by {{ book.author }} ({{ book.year_published }})</li>
+        {% endfor %}
+    </ul>
+   
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Add more admin-related actions and forms here -->
+{% endblock %}
+
